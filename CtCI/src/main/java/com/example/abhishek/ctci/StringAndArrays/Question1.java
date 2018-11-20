@@ -12,8 +12,8 @@ public class Question1 {
         String unique = "alunikchrs";
         String notUnique = "notsounique";
 
-        System.out.println(unique + " is unique? "+ hasUniqueCharacters(unique));
-        System.out.println(notUnique + " is unique? "+ hasUniqueCharacters(notUnique));
+        System.out.println(unique + " is unique? "+ hasUniqueCharactersOptimized(unique));
+        System.out.println(notUnique + " is unique? "+ hasUniqueCharactersOptimized(notUnique));
     }
 
     private static boolean hasUniqueCharacters(String string) {
@@ -31,4 +31,17 @@ public class Question1 {
         }
         return true;
     }
+
+    private static boolean hasUniqueCharactersOptimized(String string){
+        int  checker = 0;
+        for(int i = 0; i < string.length(); i++){
+            int val = string.charAt(i) - 'a';
+            if((checker & (1 << val))> 0){
+                return false;
+            }
+            checker |= (1 << val);
+        }
+        return true;
+    }
+
 }
